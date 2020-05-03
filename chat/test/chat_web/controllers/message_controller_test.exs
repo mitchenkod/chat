@@ -1,19 +1,19 @@
 defmodule ChatWeb.MessageControllerTest do
-  use Todos.ConnCase
+  use ChatWeb.ConnCase
 
-  test "#index renders a list of todos" do
+  test "#index renders a list of mesages" do
     conn = build_conn()
-    todo = insert(:todo)
+    message = insert(:message)
 
-    conn = get conn, todo_path(conn, :index)
+    conn = get conn, ChatWeb.Router.Helpers.message_path(conn, :index)
 
-    assert json_response(conn, 200) == %{
-             "todos" => [%{
-               "title" => todo.title,
-               "description" => todo.description,
-               "inserted_at" => Ecto.DateTime.to_iso8601(todo.inserted_at),
-               "updated_at" => Ecto.DateTime.to_iso8601(todo.updated_at)
-             }]
-           }
+    assert json_response(conn, 200) == render_json("index.json", messages: [message])
+  end
+
+  defp render_json(template, assigns) do
+    assigns = Map.new(assigns)
+    ChatWeb.MessageView.render(template, assigns)
+    |> Poison.encode!
+    |> Poison.decode!
   end
 end

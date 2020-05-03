@@ -47,6 +47,8 @@ defmodule Chat.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:excoveralls, "~> 0.7.0", only: [:test, :dev]}, # tracking test coverage
+      {:ex_machina, "~> 2.4", only: :test},
+      {:poison, "~> 3.1"}
     ]
   end
 
