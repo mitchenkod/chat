@@ -13,8 +13,10 @@ defmodule ChatWeb.MessageController do
 
   def create(conn, _params) do
     {:ok, message} =
-      Chat.Message.changeset(%Chat.Message{}, _params[:message])
+      Chat.Message.changeset(%Chat.Message{}, _params["message"])
       |> Chat.Repo.insert()
+
+    ChatWeb.Endpoint.broadcast("room:lobby", "shout", _params["message"])
     render(conn, "show.json", message: message)
   end
 end
