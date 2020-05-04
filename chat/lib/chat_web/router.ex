@@ -23,7 +23,7 @@ defmodule ChatWeb.Router do
   scope "/api", ChatWeb do
     pipe_through :api
 
-    resources "/messages", MessageController, only: [:index]
+    resources "/messages", MessageController, only: [:index, :show, :create]
   end
   # Other scopes may use custom stacks.
   # scope "/api", ChatWeb do
