@@ -12,6 +12,12 @@ defmodule ChatWeb.MessageController do
   end
 
   def create(conn, _params) do
+    if _params["message"]["chat_id"] == nil do
+      chat =  Chat.Chat.changeset(%Chat.Chat{}, %{user_id: 1, status: 0})
+                   |> Chat.Repo.insert()
+      %{_params["message"] | "chat_id" => chat.id }
+    end
+
     {:ok, message} =
       Chat.Message.changeset(%Chat.Message{}, _params["message"])
       |> Chat.Repo.insert()

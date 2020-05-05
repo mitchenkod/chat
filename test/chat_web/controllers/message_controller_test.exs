@@ -19,9 +19,9 @@ defmodule ChatWeb.MessageControllerTest do
     assert json_response(conn, 200) == render_json("show.json", message: message)
   end
 
-  test "#create creates and returns a message" do
+  test "#creates and returns a message" do
     conn = build_conn()
-    message_params = %{name: "Client", message: "Hi!", chat_room: "foo_bar"}
+    message_params = %{name: "Client", message: "Hi!", chat_id: 1}
 
     conn = post conn, ChatWeb.Router.Helpers.message_path(conn, :create, message: message_params)
 

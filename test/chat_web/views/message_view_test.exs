@@ -11,6 +11,7 @@ defmodule ChatWeb.MessageViewTest do
     assert rendered_message == %{
              name: message.name,
              message: message.message,
+             chat_id: message.chat_id
            }
   end
 

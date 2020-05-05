@@ -16,7 +16,8 @@ defmodule ChatWeb.MessageView do
   def message_json(message) do
     %{
       name: message.name,
-      message: message.message
+      message: message.message,
+      chat_id: message.chat_id
     }
   end
 end
