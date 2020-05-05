@@ -6,6 +6,7 @@ defmodule Chat.Message do
     field :message, :string
     field :name, :string
 
+    belongs_to :chat, Chat.Chat
     timestamps()
   end
 
